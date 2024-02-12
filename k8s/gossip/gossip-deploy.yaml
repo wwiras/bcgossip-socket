@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bcgossip
+  labels:
+    name: bcgossip
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: bcgossip
+  template:
+    metadata:
+      labels:
+        name: bcgossip
+    spec:
+      containers:
+      - name: bcgossip-cont
+        image: wwiras/bcgossip2:v10
+        ports:
+        - name: gossip-port
+          containerPort: 5050
+          protocol: TCP
