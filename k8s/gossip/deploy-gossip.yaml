@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bcgossip-service
+  name: bcgossip
   labels:
     job: node-bcgossip
     app: bcgossip
