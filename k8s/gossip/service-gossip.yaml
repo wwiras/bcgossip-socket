@@ -30,4 +30,4 @@ spec:
     - port: gossip-port
   selector:
     matchLabels:
-      name: bcgossip
+      app: bcgossip
