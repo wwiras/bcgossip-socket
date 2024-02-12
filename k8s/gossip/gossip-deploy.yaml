@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bcgossip
+  name: bcgossip-deployment
   labels:
     name: bcgossip
 spec:
@@ -15,9 +15,25 @@ spec:
         name: bcgossip
     spec:
       containers:
-      - name: bcgossip-cont
-        image: wwiras/bcgossip2:v10
-        ports:
-        - name: gossip-port
-          containerPort: 5050
-          protocol: TCP
+        - name: bcgossip-cont
+          image: wwiras/bcgossip2:v10
+          ports:
+            - containerPort: 5050
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bcgossip-service
+  labels:
+    job: node-bcgossip
+    app: bcgossip
+spec:
+  type: ClusterIP
+  selector:
+    app: bcgossip
+  ports:
+    - port: 5050
+      targetPort: 5050
+      protocol: TCP
+      name: gossip-port

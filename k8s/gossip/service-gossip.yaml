@@ -14,3 +14,20 @@ spec:
       targetPort: 5050
       protocol: TCP
       name: gossip-port
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bcgossip-service-monitor
+  labels:
+    release: prom
+    app: prom
+spec:
+  jobLabel: job
+  endpoints:
+    - interval: 30s
+    - port: gossip-port
+  selector:
+    matchLabels:
+      name: bcgossip
