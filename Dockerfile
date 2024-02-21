@@ -5,10 +5,11 @@ FROM alpine:3
 RUN apk add python3
 RUN apk add iputils
 RUN apk add py3-pip
+RUN apk add py3-kubernetes
 
 #Install pip and upgrade
-RUN [ "pip", "install", "--upgrade", "pip" ]
-RUN [ "pip", "install", "kubernetes"]
+#RUN [ "pip", "install", "--upgrade", "pip" ]
+#RUN [ "pip", "install", "kubernetes"]
 
 # Create user app_user 
 RUN adduser app_user -h /home/app_user;echo 'app_user:myalpine123' | chpasswd
